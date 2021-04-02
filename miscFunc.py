@@ -29,10 +29,31 @@ def pool_process(f, data, pool_size):
             print("Overall Time:", int(time.time()-tp1))
 
 
+def check_prime(num):
+    t1 = time.time()
+    res = False
+    if num > 0:
+        # check for factors
+        for i in range(2,num):
+            if (num % i) == 0:
+                print(num,"is not a prime number")
+                print(i,"times",num//i,"is",num)
+                print("Time:", int(time.time()-t1))
+                break
+        else:
+            print(num,"is a prime number")
+            print("Time:", time.time()-t1) 
+            res = True
+            # if input number is less than
+            # or equal to 1, it is not prime
+    return res
 
-
-dataRange = range(10)
+# dataRange = range(10)
 
 # Use the pool_process function to apply my_func to the data in dataRange.  
 # This task is so light it requires very little processing time. 
-pool_process(my_func_verbose, dataRange, 2)
+# pool_process(my_func_verbose, dataRange, 2)
+
+dataRange = [61, 67, 71, 73, 79, 83, 89, 97, 101, 15488801] # list of known prime numbers
+
+pool_process(check_prime, dataRange, 2)
